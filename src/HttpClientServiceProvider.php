@@ -34,9 +34,6 @@ class HttpClientServiceProvider extends ServiceProvider
             $this->mergeConfigFrom(__DIR__.'/config/http.php', 'http-client');
         }
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
-        $this->app->bind('http-client', function () {
-            return new Antpool(config('antpool.username'), config('antpool.api_key'), config('antpool.api_secret'));
-        });
     }
 
     /**
