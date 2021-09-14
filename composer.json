@@ -1,0 +1,21 @@
+{
+    "name": "taker-io/lib-http-client",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Alex Burakovskiy",
+            "email": "aburakovskiy@taker.io"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "TakerIo\\HttpClient\\": "src/"
+        }
+    }
+}
