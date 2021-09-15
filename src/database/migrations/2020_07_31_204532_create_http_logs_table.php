@@ -20,6 +20,7 @@ class CreateHttpLogsTable extends Migration
                 $table->string('type', 6);
                 $table->text('request');
                 $table->text('response');
+                $table->text('headers');
                 $table->smallInteger('code');
                 $table->timestamps();
             });
