@@ -18,7 +18,7 @@ class HttpClientServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([__DIR__ . '/config/http.php' => config_path('http.php')]);
+        $this->publishes([__DIR__ . '/config/http.php' => base_path('config/http.php')]);
     }
 
     /**
@@ -28,8 +28,8 @@ class HttpClientServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if (file_exists(config_path('http.php'))) {
-            $this->mergeConfigFrom(config_path('http.php'), 'http-client');
+        if (file_exists(base_path('config/http.php'))) {
+            $this->mergeConfigFrom(base_path('config/http.php'), 'http-client');
         } else {
             $this->mergeConfigFrom(__DIR__.'/config/http.php', 'http-client');
         }
