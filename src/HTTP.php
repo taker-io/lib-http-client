@@ -56,6 +56,16 @@ class HTTP
     protected $response;
 
     /**
+     * @var null|int
+     */
+    protected static $lastResponseStatusCode;
+
+    /**
+     * @var null|false|object|array
+     */
+    protected static $lastResponseData;
+
+    /**
      * HTTP constructor.
      * @param string $url
      * @param bool $assoc
@@ -179,6 +189,7 @@ class HTTP
     {
         try {
             $this->response = $this->client->request($this->method, $this->url, $this->options);
+            static::$lastResponseStatusCode = $this->response ? $this->response->getStatusCode() : 0;
         } catch (TransferException $e) {
             $this->response = $e->getResponse();
         }
@@ -196,7 +207,7 @@ class HTTP
         if (!$response) {
             return false;
         }
-
+        static::$lastResponseData = $response;
         return $response;
     }
 
@@ -210,7 +221,7 @@ class HTTP
                     'request' => serialize($this->body),
                     'response' => $this->response ? serialize($this->response->getBody()->getContents()) : '',
                     'headers' => $this->response ? serialize($this->response->getHeaders()) : '',
-                    'code' => $this->response ? $this->response->getStatusCode() : 0
+                    'code' => static::$lastResponseStatusCode
                 ]);
             } catch (\Exception $e) {
                 if (function_exists('report')) {
@@ -218,5 +229,21 @@ class HTTP
                 }
             }
         }
+    }
+
+    /**
+     * @return int|null
+     */
+    public static function getLastResponseStatusCode()
+    {
+        return static::$lastResponseStatusCode;
+    }
+
+    /**
+     * @return array|false|object|null
+     */
+    public static function getLastResponseData()
+    {
+        return static::$lastResponseData;
     }
 }
