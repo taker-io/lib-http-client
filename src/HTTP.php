@@ -189,10 +189,10 @@ class HTTP
     {
         try {
             $this->response = $this->client->request($this->method, $this->url, $this->options);
-            static::$lastResponseStatusCode = $this->response ? $this->response->getStatusCode() : 0;
         } catch (TransferException $e) {
             $this->response = $e->getResponse();
         }
+        static::$lastResponseStatusCode = $this->response ? $this->response->getStatusCode() : 0;
         $this->log();
     }
 
