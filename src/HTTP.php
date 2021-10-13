@@ -164,6 +164,15 @@ class HTTP
     /**
      * @return bool|mixed|string
      */
+    public function patch()
+    {
+        $this->type = 'PATCH';
+        return $this->exec();
+    }
+
+    /**
+     * @return bool|mixed|string
+     */
     public function delete()
     {
         $this->method = 'DELETE';
