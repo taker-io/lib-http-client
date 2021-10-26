@@ -166,7 +166,7 @@ class HTTP
      */
     public function patch()
     {
-        $this->type = 'PATCH';
+        $this->method = 'PATCH';
         return $this->exec();
     }
 
