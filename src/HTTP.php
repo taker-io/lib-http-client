@@ -102,6 +102,17 @@ class HTTP
     }
 
     /**
+     * @param string $key
+     * @param $value
+     * @return HTTP $this
+     */
+    public function options(string $key, $value)
+    {
+        $this->options[$key] = $value;
+        return $this;
+    }
+
+    /**
      * @param array $headers
      * @return HTTP $this
      */
