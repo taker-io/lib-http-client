@@ -7,6 +7,7 @@
 
 namespace TakerIo\HttpClient;
 
+use TakerIo\HttpClient\Commands\Clean;
 use Illuminate\Support\ServiceProvider;
 
 class HttpClientServiceProvider extends ServiceProvider
@@ -19,6 +20,10 @@ class HttpClientServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([__DIR__ . '/config/http.php' => base_path('config/http.php')]);
+        $this->commands(Clean::class);
+        $this->publishes([
+            __DIR__.'/database/migrations/create_http_logs_table.php' => database_path('migrations/'.date('Y_m_d_His').'_create_http_logs_table.php'),
+        ], 'migrations');
     }
 
     /**

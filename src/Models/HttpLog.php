@@ -1,6 +1,6 @@
 <?php
 
-namespace TakerIo\HttpClient\App\Models;
+namespace TakerIo\HttpClient\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

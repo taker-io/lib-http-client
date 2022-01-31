@@ -7,7 +7,6 @@ use GuzzleHttp\Exception\TransferException;
 
 /**
  * Class HTTP
- * @package App\Services
  */
 class HTTP
 {
